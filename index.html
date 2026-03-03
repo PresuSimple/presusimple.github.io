@@ -7,6 +7,21 @@
   <meta name="google-site-verification" content="j_mYU1cCzi5c_kmDPl07IHyDHmrTW2LluZAxsvUw4Bw" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="icon" type="image/png" href="favicon.png">
+  <style>
+button {
+  padding: 10px 15px;
+  background-color: #2e7d32;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+button:hover {
+  opacity: 0.9;
+}
+</style>
+
 </head>
 
 <style>
@@ -514,9 +529,12 @@ render();
 <div style="text-align:center; margin-top:40px; font-size:12px;">
   <a href="politica-de-privacidad.html">Política de Privacidad</a>
 </div>
-    
+<button onclick="if(navigator.share){navigator.share({title:'PresuSimple - Generador de Presupuestos', url:window.location.href});}">
+  Compartir esta herramienta
+</button>    
 </body>
 </html>
+
 
 
 
