@@ -193,6 +193,36 @@ button {
     width: 120px;
     margin: 15px auto;
   }
+.tool-link-box{
+  margin-top:25px;
+  padding:20px;
+  border:2px dashed #4a90e2;
+  border-radius:10px;
+  text-align:center;
+  background:#f7faff;
+}
+
+.tool-button{
+  display:inline-block;
+  margin-top:10px;
+  padding:10px 20px;
+  background:#2e7d32;
+  color:white;
+  text-decoration:none;
+  border-radius:6px;
+  font-weight:bold;
+}
+
+.tool-button:hover{
+  opacity:0.9;
+}
+
+.tool-link-box small{
+  display:block;
+  margin-top:8px;
+  color:#666;
+}
+  
 }
 </style>
 </head>
@@ -237,8 +267,24 @@ button {
   </div>
 
   <button class="secondary" onclick="guardarPresupuesto()">💾 Guardar presupuesto</button>
-  <button class="secondary" onclick="descargarPDF()">📄 Descargar PDF</button>
+  <button class="secondary" onclick="descargarPDF()">📄 Descargar Presupuesto PDF</button>
+<div class="tool-link-box">
 
+<h3>🧾 ¿Ya te pagaron?</h3>
+
+<p>
+Después de enviar un presupuesto normalmente vas a necesitar
+emitir un recibo para tu cliente.
+</p>
+
+<a href="recibosimple.html" class="tool-button">
+Ir a ReciboSimple
+</a>
+
+<small>Generá recibos profesionales en PDF gratis</small>
+
+</div>
+    
   <div id="estado" class="small-text"></div>
 
   <!-- PRO -->
@@ -588,6 +634,7 @@ render();
 </button>    
 </body>
 </html>
+
 
 
 
