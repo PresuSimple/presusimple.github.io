@@ -1,34 +1,30 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="UTF-8">
 
+<meta charset="UTF-8">
 <title>Generador de Recibos Online Gratis | ReciboSimple</title>
 
-<meta name="description" content="Generador de recibos de pago online gratis. Crea recibos profesionales en PDF de forma rápida y sencilla.">
+<meta name="description" content="Generador de recibos online gratis. Crea recibos profesionales en PDF de forma rápida y simple.">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<link rel="canonical" href="https://presusimple.github.io/recibosimple.html">
-
 <style>
 
-body {
-  font-family: system-ui, sans-serif;
-  background:#f2f4f8;
-  padding:20px;
+body{
+font-family:system-ui;
+background:#f2f4f8;
+padding:20px;
 }
 
-.container {
-  max-width:600px;
-  margin:auto;
-  background:white;
-  padding:25px;
-  border-radius:16px;
-  box-shadow:0 15px 40px rgba(0,0,0,.1);
+.container{
+max-width:600px;
+margin:auto;
+background:white;
+padding:25px;
+border-radius:16px;
+box-shadow:0 15px 40px rgba(0,0,0,.1);
 }
-
-/* BRAND */
 
 .brand{
 text-align:center;
@@ -36,16 +32,13 @@ margin-bottom:20px;
 }
 
 .brand img{
-max-width:180px;
-height:auto;
+max-width:200px;
 }
 
 .brand .tagline{
 font-size:14px;
 color:#666;
 }
-
-/* FORM */
 
 label{
 display:block;
@@ -69,41 +62,22 @@ border:none;
 border-radius:10px;
 font-size:15px;
 cursor:pointer;
+background:#007bff;
+color:white;
 }
 
-.primary{background:#007bff;color:white;}
-
-.total{
-margin-top:16px;
-text-align:right;
-}
-
-.total span{
-display:block;
-font-size:34px;
-font-weight:900;
-color:#007bff;
+button:hover{
+opacity:.9;
 }
 
 .small{
 font-size:13px;
+margin-top:8px;
+}
+
+#estado{
 margin-top:10px;
-color:#666;
-}
-
-.tool-link{
-margin-top:30px;
-padding:20px;
-border-radius:16px;
-background:#f1f8ff;
-border:2px dashed #339af0;
-text-align:center;
-}
-
-.tool-link button{
-background:#2e7d32;
-color:white;
-font-weight:700;
+font-size:13px;
 }
 
 </style>
@@ -115,14 +89,11 @@ font-weight:700;
 <div class="container">
 
 <div class="brand">
-
-<img src="logo.png" alt="ReciboSimple">
-
-<div class="tagline">
-Recibos simples, claros y profesionales
+<img src="logo.png">
+<div class="tagline">Recibos simples y profesionales</div>
 </div>
 
-</div>
+<h1>Generador de Recibos</h1>
 
 <label>Número de recibo
 <input id="numero" readonly>
@@ -140,14 +111,6 @@ Recibos simples, claros y profesionales
 <input type="number" id="monto">
 </label>
 
-<label>Moneda
-<select id="moneda">
-<option value="$">$ Pesos</option>
-<option value="USD">USD</option>
-<option value="€">€</option>
-</select>
-</label>
-
 <label>Forma de pago
 <select id="pago">
 <option>Efectivo</option>
@@ -157,50 +120,89 @@ Recibos simples, claros y profesionales
 </select>
 </label>
 
+<label>Moneda
+<select id="moneda">
+<option value="$">$ Pesos</option>
+<option value="USD">USD</option>
+<option value="€">€</option>
+</select>
+</label>
+
+<label class="small">
+Logo de tu negocio
+<input type="file" id="logoInput" accept="image/*">
+</label>
+
 <label>Fecha
 <input type="date" id="fecha">
 </label>
 
-<button class="primary" onclick="generarPDF()">Descargar Recibo PDF</button>
+<button onclick="generarPDF()">Descargar Recibo PDF</button>
 
-<div id="estado" class="small"></div>
+<div id="estado"></div>
 
-<div class="tool-link">
-
-<h3>¿Necesitas hacer un presupuesto primero?</h3>
-
-<p>
-Antes de emitir un recibo normalmente se genera un presupuesto para el cliente.
+<p style="margin-top:30px;font-size:13px;text-align:center">
+También podés crear presupuestos en  
+<a href="https://presusimple.github.io">PresuSimple</a>
 </p>
 
-<a href="https://presusimple.github.io/">
-<button>Crear presupuesto con PresuSimple</button>
-</a>
-
 </div>
-
-</div>
-
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.31/jspdf.plugin.autotable.min.js"></script>
 
 <script>
 
-/* numero de recibo automatico */
+/* NUMERO AUTOMATICO */
 
-let numero = localStorage.getItem("numeroRecibo") || 1
-
+let numero = Number(localStorage.getItem("numeroRecibo")) || 1
 document.getElementById("numero").value = numero
 
+/* LOGO */
+
+let logoData=null
+let logoWidth=0
+let logoHeight=0
+
+document.getElementById("logoInput").addEventListener("change", e=>{
+
+const file=e.target.files[0]
+
+if(!file)return
+
+const reader=new FileReader()
+
+reader.onload=ev=>{
+
+logoData=ev.target.result
+
+const img=new Image()
+
+img.onload=()=>{
+logoWidth=img.width
+logoHeight=img.height
+}
+
+img.src=logoData
+
+estado.innerText="✔ Logo cargado"
+
+}
+
+reader.readAsDataURL(file)
+
+})
+
+/* GENERAR PDF */
 
 function generarPDF(){
 
-const cliente = document.getElementById("cliente").value
-const concepto = document.getElementById("concepto").value
-const monto = document.getElementById("monto").value
-const moneda = document.getElementById("moneda").value
-const pago = document.getElementById("pago").value
-const fecha = document.getElementById("fecha").value
+const cliente=document.getElementById("cliente").value
+const concepto=document.getElementById("concepto").value
+const monto=document.getElementById("monto").value
+const moneda=document.getElementById("moneda").value
+const pago=document.getElementById("pago").value
+const fecha=document.getElementById("fecha").value
 
 if(!concepto || !monto){
 estado.innerText="Completa concepto y monto"
@@ -213,16 +215,44 @@ const doc=new jsPDF()
 
 let y=20
 
+/* LOGO */
+
+if(logoData){
+
+const maxWidth=40
+const ratio=logoHeight/logoWidth
+const h=maxWidth*ratio
+
+doc.addImage(logoData,"PNG",20,10,maxWidth,h)
+
+y=10+h+10
+
+}
+
+/* TITULO */
+
 doc.setFontSize(26)
-doc.text("RECIBO",105,y,{align:"center"})
+doc.setTextColor(196,98,45)
+
+doc.text(
+"RECIBO",
+105,
+y,
+{align:"center"}
+)
+
 y+=10
 
+doc.setTextColor(0)
+
+doc.setDrawColor(200)
 doc.line(20,y,190,y)
+
 y+=10
 
 doc.setFontSize(11)
 
-doc.text("Número de recibo: "+numero,20,y)
+doc.text("N° Recibo: "+numero,20,y)
 y+=8
 
 if(cliente){
@@ -230,29 +260,80 @@ doc.text("Cliente: "+cliente,20,y)
 y+=8
 }
 
-doc.text("Concepto: "+concepto,20,y)
-y+=8
-
-doc.text("Forma de pago: "+pago,20,y)
-y+=8
-
 doc.text("Fecha: "+fecha,20,y)
-y+=12
+y+=10
+
+/* TABLA */
+
+doc.autoTable({
+
+startY:y,
+
+head:[["Concepto","Forma de pago","Monto"]],
+
+body:[[
+concepto,
+pago,
+moneda+monto
+]],
+
+styles:{
+fontSize:11,
+cellPadding:4
+},
+
+headStyles:{
+fillColor:[245,235,225],
+textColor:80,
+fontStyle:"bold"
+},
+
+columnStyles:{
+0:{cellWidth:90},
+1:{cellWidth:50},
+2:{cellWidth:40,halign:"right"}
+}
+
+})
+
+y=doc.lastAutoTable.finalY+10
+
+/* TOTAL */
+
+doc.setDrawColor(0)
+doc.setLineWidth(1)
+
+doc.line(120,y,190,y)
+
+y+=10
+
+doc.setFillColor(245,235,225)
+doc.rect(120,y-10,70,16,"F")
 
 doc.setFontSize(16)
+doc.setTextColor(196,98,45)
 
 doc.text(
-"Total recibido: "+moneda+monto,
-20,
-y
+"TOTAL: "+moneda+monto,
+185,
+y,
+{align:"right"}
 )
 
+doc.setTextColor(0)
+doc.setLineWidth(0.2)
+
+/* FOOTER */
+
+const pageHeight=doc.internal.pageSize.height
+
 doc.setFontSize(8)
+doc.setTextColor(150)
 
 doc.text(
-"Recibo generado con ReciboSimple",
+"Recibo generado con ReciboSimple - presusimple.github.io",
 105,
-285,
+pageHeight-10,
 {align:"center"}
 )
 
@@ -273,24 +354,6 @@ estado.innerText=""
 }
 
 </script>
-
-<section style="margin-top:40px;max-width:800px">
-
-<h2>¿Cómo hacer un recibo de pago?</h2>
-
-<p>
-Un recibo es un comprobante que confirma que se recibió un pago por un producto o servicio.
-Con ReciboSimple puedes generar recibos profesionales en PDF en segundos.
-</p>
-
-<h2>¿Cuándo se usa un recibo?</h2>
-
-<p>
-Los recibos se utilizan cuando un cliente paga un presupuesto, una reparación,
-un trabajo freelance o una venta directa.
-</p>
-
-</section>
 
 </body>
 </html>
