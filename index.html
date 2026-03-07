@@ -391,7 +391,8 @@ function render() {
   const lista = document.getElementById("lista");
   lista.innerHTML = "";
   total = 0;
-  const m = document.getElementById("moneda").value;
+  const monedaInput = document.getElementById("moneda");
+  const m = monedaInput ? monedaInput.value : "$";
 
   items.forEach((i, index) => {
     total += i.subtotal;
@@ -665,6 +666,7 @@ render();
 </button>    
 </body>
 </html>
+
 
 
 
