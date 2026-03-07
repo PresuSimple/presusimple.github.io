@@ -419,15 +419,24 @@ function render() {
 
 /* ================== PREVIEW TOTAL ================== */
 function actualizarTotalProvisorio() {
-const c = Number(document.getElementById("cant").value);
-const p = Number(document.getElementById("precio").value);
-const m = document.getElementById("moneda").value;
 
-  if (c > 0 && p > 0) {
-    document.getElementById("total").textContent = m + (total + c * p);
-  } else {
-    document.getElementById("total").textContent = m + total;
+  const cantInput = document.getElementById("cant");
+  const precioInput = document.getElementById("precio");
+  const monedaInput = document.getElementById("moneda");
+
+  if (!cantInput || !precioInput || !monedaInput) return;
+
+  const c = Number(cantInput.value);
+  const p = Number(precioInput.value);
+  const m = monedaInput.value;
+
+  const total = c * p;
+
+  const preview = document.getElementById("totalProvisorio");
+  if (preview) {
+    preview.textContent = m + total;
   }
+
 }
 
 /* ================== CRUD ================== */
@@ -672,6 +681,7 @@ render();
 </button>    
 </body>
 </html>
+
 
 
 
