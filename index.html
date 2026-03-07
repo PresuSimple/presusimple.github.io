@@ -290,6 +290,12 @@ button {
   <label>Trabajo o producto <input id="desc"></label>                                   
   <label>Cantidad <input type="number" id="cant" oninput="actualizarTotalProvisorio()">
   <label>Precio unitario <input type="number" id="precio" oninput="actualizarTotalProvisorio()">
+  <label>Moneda</label>
+<select id="moneda">
+  <option value="$">$</option>
+  <option value="USD">USD</option>
+  <option value="€">€</option>
+</select>  
 
   <button class="primary" onclick="agregarItem()">Presupuestar</button>
 
@@ -666,6 +672,7 @@ render();
 </button>    
 </body>
 </html>
+
 
 
 
