@@ -412,9 +412,9 @@ function render() {
 
 /* ================== PREVIEW TOTAL ================== */
 function actualizarTotalProvisorio() {
-  const c = Number(cant.value);
-  const p = Number(precio.value);
-  const m = moneda.value;
+const c = Number(document.getElementById("cant").value);
+const p = Number(document.getElementById("precio").value);
+const m = document.getElementById("moneda").value;
 
   if (c > 0 && p > 0) {
     document.getElementById("total").textContent = m + (total + c * p);
@@ -665,6 +665,7 @@ render();
 </button>    
 </body>
 </html>
+
 
 
 
