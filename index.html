@@ -345,9 +345,6 @@ Ir a ReciboSimple
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.31/jspdf.plugin.autotable.min.js"></script>
 
 <script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
-
-<script>
 /* ================== ESTADO GLOBAL ================== */
 let items = JSON.parse(localStorage.getItem("presupuesto")) || [];
 let total = 0;
@@ -394,7 +391,7 @@ function render() {
   const lista = document.getElementById("lista");
   lista.innerHTML = "";
   total = 0;
-  const m = moneda.value;
+  const m = document.getElementById("moneda").value;
 
   items.forEach((i, index) => {
     total += i.subtotal;
@@ -668,6 +665,7 @@ render();
 </button>    
 </body>
 </html>
+
 
 
 
