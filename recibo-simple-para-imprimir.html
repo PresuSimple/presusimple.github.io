@@ -1,37 +1,95 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
 <meta charset="UTF-8">
 <title>Recibo Simple para Imprimir | ReciboSimple</title>
-<meta name="description" content="Genera un recibo simple para imprimir en PDF gratis.">
-<link rel="icon" href="favicon2.png">
+
+<meta name="description" content="Crea un recibo simple para imprimir en PDF gratis.">
+
+<link rel="icon" type="image/png" href="favicon2.png">
+
+<style>
+
+body{font-family:Arial;background:#f4f6f8;margin:0;}
+header{background:#2c3e50;color:white;padding:20px;text-align:center;}
+
+.container{
+max-width:900px;
+margin:auto;
+background:white;
+padding:40px;
+margin-top:30px;
+border-radius:10px;
+box-shadow:0 4px 12px rgba(0,0,0,0.08);
+}
+
+.cta-box{
+margin-top:40px;
+padding:25px;
+border:2px dashed #4a90e2;
+background:#f3f8ff;
+border-radius:10px;
+text-align:center;
+}
+
+.cta-button{
+display:inline-block;
+margin-top:15px;
+padding:14px 24px;
+background:#2e7d32;
+color:white;
+text-decoration:none;
+border-radius:8px;
+font-weight:bold;
+}
+
+footer{text-align:center;padding:30px;color:#666;}
+
+</style>
+
 </head>
 
-<body style="font-family:Arial;max-width:800px;margin:auto;padding:20px;line-height:1.6;">
+<body>
+
+<header>
+<h2>ReciboSimple</h2>
+<p>Generador de recibos online gratis</p>
+</header>
+
+<div class="container">
 
 <h1>Recibo simple para imprimir</h1>
 
-<p>Muchas personas necesitan un <strong>recibo simple para imprimir</strong> para confirmar pagos de servicios o ventas.</p>
+<p>Muchas personas necesitan un recibo simple para confirmar pagos de servicios o ventas.</p>
 
 <h2>Ventajas del recibo en PDF</h2>
 
 <ul>
-<li>Se puede enviar por email</li>
 <li>Se puede imprimir fácilmente</li>
+<li>Se puede enviar por email</li>
 <li>Queda registrado</li>
 </ul>
 
-<h2>Crear recibo PDF gratis</h2>
+<div class="cta-box">
 
-<p>Puedes crear un recibo profesional en segundos.</p>
+<h3>Crear recibo PDF gratis</h3>
 
-<p>
-<a href="recibosimple.html">Generar recibo en PDF</a>
-</p>
+<p>Genera tu recibo profesional y descárgalo en PDF.</p>
 
-<hr>
+<a class="cta-button" href="recibosimple.html">
+Crear recibo PDF
+</a>
 
-<p>Antes de cobrar, podés crear presupuestos con <a href="https://presusimple.github.io/">PresuSimple</a>.</p>
+</div>
+
+<p>Antes de cobrar puedes enviar un presupuesto con <a href="https://presusimple.github.io/">PresuSimple</a>.</p>
+
+</div>
+
+<footer>
+<p>© ReciboSimple</p>
+</footer>
 
 </body>
 </html>
