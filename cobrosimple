@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>CobroSimple | Calcula cuánto cobrar por tu trabajo o producto</title>
+
+<meta name="description" content="Calcula fácilmente cuánto cobrar por un producto o servicio. Ideal para emprendedores, técnicos y oficios. Gratis y sin registro.">
+
+<meta name="keywords" content="cuanto cobrar, calcular precio, precio servicio, precio trabajo, margen de ganancia, emprendedores">
+
+<link rel="canonical" href="https://presusimple.github.io/cobrosimple/">
+
+<!-- Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXX"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-XXXXXXXX');
+</script>
+
+<!-- Google Adsense -->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXX"
+crossorigin="anonymous"></script>
+
+<style>
+
+body{
+font-family:Arial, Helvetica, sans-serif;
+background:#f4f6f8;
+margin:0;
+padding:0;
+}
+
+.header{
+background:#2c7be5;
+color:white;
+text-align:center;
+padding:20px;
+}
+
+nav{
+text-align:center;
+margin-top:10px;
+}
+
+nav a{
+margin:0 10px;
+text-decoration:none;
+color:#2c7be5;
+font-weight:bold;
+}
+
+.container{
+max-width:720px;
+margin:auto;
+background:white;
+padding:25px;
+margin-top:20px;
+border-radius:10px;
+box-shadow:0 0 10px rgba(0,0,0,0.08);
+}
+
+h1{
+margin:0;
+}
+
+input, select{
+width:100%;
+padding:10px;
+margin-top:5px;
+margin-bottom:15px;
+border-radius:5px;
+border:1px solid #ccc;
+font-size:15px;
+}
+
+button{
+background:#2c7be5;
+color:white;
+border:none;
+padding:12px;
+width:100%;
+border-radius:6px;
+font-size:16px;
+margin-top:10px;
+cursor:pointer;
+}
+
+button:hover{
+background:#1a5ed8;
+}
+
+.resultado{
+font-size:26px;
+font-weight:bold;
+text-align:center;
+margin-top:20px;
+color:#2c7be5;
+}
+
+.extra{
+margin-top:15px;
+}
+
+.mensaje{
+margin-top:30px;
+background:#eef3ff;
+padding:15px;
+border-radius:8px;
+font-size:14px;
+}
+
+footer{
+text-align:center;
+margin-top:40px;
+padding-bottom:20px;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="header">
+<h1>CobroSimple</h1>
+<p>Calcula cuánto deberías cobrar</p>
+</div>
+
+<nav>
+
+<a href="https://presusimple.github.io/">PresuSimple</a> |
+<a href="https://presusimple.github.io/ivasimple">IVA Simple</a> |
+<a href="https://presusimple.github.io/recibosimple">ReciboSimple</a>
+
+</nav>
+
+<div class="container">
+
+<label>Tipo de cálculo</label>
+
+<select id="modo" onchange="cambiarModo()">
+<option value="producto">Producto / Venta</option>
+<option value="servicio">Servicio / Trabajo</option>
+</select>
+
+<div id="producto">
+
+<label>Costo del producto o materiales</label>
+<input type="number" id="costo">
+
+<label>Gastos extra (envío, comisiones, etc)</label>
+<input type="number" id="gastos">
+
+<label>Ganancia deseada (%)</label>
+<input type="number" id="ganancia">
+
+<label>Impuestos (%) opcional</label>
+<input type="number" id="impuestos">
+
+</div>
+
+<div id="servicio" style="display:none">
+
+<label>Horas de trabajo</label>
+<input type="number" id="horas">
+
+<label>Valor por hora</label>
+<input type="number" id="valorhora">
+
+<label>Materiales</label>
+<input type="number" id="materiales">
+
+<label>Gastos extra</label>
+<input type="number" id="gastostrabajo">
+
+<label>Impuestos (%) opcional</label>
+<input type="number" id="impuestostrabajo">
+
+</div>
+
+<button onclick="calcular()">Calcular cuánto cobrar</button>
+
+<div class="resultado" id="resultado"></div>
+
+<div class="extra">
+<button onclick="copiarPrecio()">Copiar precio</button>
+<button onclick="generarTexto()">Generar texto para presupuesto</button>
+</div>
+
+</div>
+
+<div class="container mensaje">
+
+Muchos emprendedores pierden dinero porque no calculan bien sus precios.
+
+Usa esta herramienta gratuita para saber cuánto deberías cobrar por tu producto o trabajo.
+
+Compártela con otros emprendedores 👇
+
+<strong>https://presusimple.github.io/cobrosimple</strong>
+
+</div>
+
+<footer>
+
+<p style="font-size:14px;"><a href="sobre-nosotros.html">Sobre nosotros</a> | <a href="contacto.html">Contacto</a> | <a href="terminos.html">Términos</a></p>
+
+</footer>
+
+<script>
+
+let precioFinal = 0;
+
+function cambiarModo(){
+
+let modo = document.getElementById("modo").value;
+
+document.getElementById("resultado").innerText="";
+
+if(modo==="producto"){
+document.getElementById("producto").style.display="block";
+document.getElementById("servicio").style.display="none";
+}
+
+if(modo==="servicio"){
+document.getElementById("producto").style.display="none";
+document.getElementById("servicio").style.display="block";
+}
+
+}
+
+function calcular(){
+
+let modo = document.getElementById("modo").value;
+
+if(modo==="producto"){
+
+let costo = Number(document.getElementById("costo").value);
+let gastos = Number(document.getElementById("gastos").value);
+let ganancia = Number(document.getElementById("ganancia").value);
+let impuestos = Number(document.getElementById("impuestos").value);
+
+let base = costo + gastos;
+
+precioFinal = base + (base * ganancia / 100);
+
+precioFinal = precioFinal + (precioFinal * impuestos / 100);
+
+document.getElementById("resultado").innerText="Precio sugerido: $" + precioFinal.toFixed(2);
+
+}
+
+if(modo==="servicio"){
+
+let horas = Number(document.getElementById("horas").value);
+let valorhora = Number(document.getElementById("valorhora").value);
+let materiales = Number(document.getElementById("materiales").value);
+let gastos = Number(document.getElementById("gastostrabajo").value);
+let impuestos = Number(document.getElementById("impuestostrabajo").value);
+
+let base = (horas * valorhora) + materiales + gastos;
+
+precioFinal = base + (base * impuestos / 100);
+
+document.getElementById("resultado").innerText="Precio del trabajo: $" + precioFinal.toFixed(2);
+
+}
+
+}
+
+function copiarPrecio(){
+
+if(precioFinal===0){
+alert("Primero calcula el precio");
+return;
+}
+
+navigator.clipboard.writeText("$" + precioFinal.toFixed(2));
+
+alert("Precio copiado");
+
+}
+
+function generarTexto(){
+
+if(precioFinal===0){
+alert("Primero calcula el precio");
+return;
+}
+
+let texto = "El precio del trabajo o producto sería $" + precioFinal.toFixed(2) + " incluyendo costos y gastos.";
+
+navigator.clipboard.writeText(texto);
+
+alert("Texto copiado para enviar por WhatsApp o presupuesto");
+
+}
+
+</script>
+
+</body>
+</html>
