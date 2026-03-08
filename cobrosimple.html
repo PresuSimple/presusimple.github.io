@@ -9,7 +9,7 @@
 
 <meta name="description" content="Calcula fácilmente cuánto cobrar por un producto o servicio. Ideal para emprendedores, técnicos y oficios. Gratis y sin registro.">
 
-<meta name="keywords" content="cuanto cobrar, calcular precio, precio servicio, precio trabajo, margen de ganancia, emprendedores">
+<meta name="keywords" content="cuanto cobrar, calcular precio, precio servicio, precio trabajo, margen de ganancia">
 
 <link rel="canonical" href="https://presusimple.github.io/cobrosimple/">
 
@@ -30,28 +30,32 @@ crossorigin="anonymous"></script>
 
 body{
 font-family:Arial, Helvetica, sans-serif;
-background:#f4f6f8;
+background:#f5f5f5;
 margin:0;
 padding:0;
 }
 
 .header{
-background:#2c7be5;
-color:white;
+background:#f4b400;
+color:#222;
 text-align:center;
-padding:20px;
+padding:22px;
+}
+
+.header h1{
+margin:0;
 }
 
 nav{
 text-align:center;
-margin-top:10px;
+margin-top:12px;
 }
 
 nav a{
 margin:0 10px;
 text-decoration:none;
-color:#2c7be5;
 font-weight:bold;
+color:#f4b400;
 }
 
 .container{
@@ -61,11 +65,11 @@ background:white;
 padding:25px;
 margin-top:20px;
 border-radius:10px;
-box-shadow:0 0 10px rgba(0,0,0,0.08);
+box-shadow:0 4px 12px rgba(0,0,0,0.08);
 }
 
-h1{
-margin:0;
+label{
+font-weight:bold;
 }
 
 input, select{
@@ -73,14 +77,14 @@ width:100%;
 padding:10px;
 margin-top:5px;
 margin-bottom:15px;
-border-radius:5px;
+border-radius:6px;
 border:1px solid #ccc;
 font-size:15px;
 }
 
 button{
-background:#2c7be5;
-color:white;
+background:#f4b400;
+color:#222;
 border:none;
 padding:12px;
 width:100%;
@@ -88,18 +92,19 @@ border-radius:6px;
 font-size:16px;
 margin-top:10px;
 cursor:pointer;
+font-weight:bold;
 }
 
 button:hover{
-background:#1a5ed8;
+background:#e0a800;
 }
 
 .resultado{
-font-size:26px;
+font-size:28px;
 font-weight:bold;
 text-align:center;
-margin-top:20px;
-color:#2c7be5;
+margin-top:25px;
+color:#f4b400;
 }
 
 .extra{
@@ -108,8 +113,8 @@ margin-top:15px;
 
 .mensaje{
 margin-top:30px;
-background:#eef3ff;
-padding:15px;
+background:#fff7cc;
+padding:18px;
 border-radius:8px;
 font-size:14px;
 }
@@ -132,11 +137,9 @@ padding-bottom:20px;
 </div>
 
 <nav>
-
 <a href="https://presusimple.github.io/">PresuSimple</a> |
 <a href="https://presusimple.github.io/ivasimple">IVA Simple</a> |
 <a href="https://presusimple.github.io/recibosimple">ReciboSimple</a>
-
 </nav>
 
 <div class="container">
@@ -297,7 +300,7 @@ let texto = "El precio del trabajo o producto sería $" + precioFinal.toFixed(2)
 
 navigator.clipboard.writeText(texto);
 
-alert("Texto copiado para enviar por WhatsApp o presupuesto");
+alert("Texto copiado para enviar por WhatsApp");
 
 }
 
