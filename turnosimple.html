@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>TurnoSimple | Cronograma de turnos de trabajo</title>
+
+<meta name="description" content="Organiza turnos de trabajo de tu equipo fácilmente. Crea cronogramas semanales y descárgalos en PDF gratis.">
+
+<link rel="canonical" href="https://presusimple.github.io/turnosimple/">
+
+<!-- Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXX"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-XXXXXXXX');
+</script>
+
+<!-- Google Adsense -->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXX"
+crossorigin="anonymous"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+
+<style>
+
+body{
+font-family:Arial;
+background:#f4f6f8;
+margin:0;
+}
+
+.header{
+background:#5c6bc0;
+color:white;
+text-align:center;
+padding:20px;
+}
+
+nav{
+text-align:center;
+margin:15px;
+}
+
+nav a{
+margin:0 10px;
+text-decoration:none;
+font-weight:bold;
+color:#5c6bc0;
+}
+
+.container{
+max-width:900px;
+margin:auto;
+background:white;
+padding:20px;
+border-radius:10px;
+box-shadow:0 0 10px rgba(0,0,0,0.08);
+}
+
+input{
+padding:8px;
+margin:5px;
+}
+
+button{
+padding:10px;
+margin-top:10px;
+background:#5c6bc0;
+color:white;
+border:none;
+border-radius:5px;
+cursor:pointer;
+}
+
+button:hover{
+background:#4957a8;
+}
+
+table{
+width:100%;
+border-collapse:collapse;
+margin-top:20px;
+}
+
+th, td{
+border:1px solid #ccc;
+padding:10px;
+text-align:center;
+}
+
+select{
+width:100%;
+padding:5px;
+}
+
+footer{
+text-align:center;
+margin-top:40px;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="header">
+<h1>TurnoSimple</h1>
+<p>Organiza turnos de trabajo fácilmente</p>
+</div>
+
+<nav>
+
+<a href="https://presusimple.github.io/">PresuSimple</a> |
+<a href="https://presusimple.github.io/cobrosimple">CobroSimple</a> |
+<a href="https://presusimple.github.io/ivasimple">IVA Simple</a> |
+<a href="https://presusimple.github.io/recibosimple">ReciboSimple</a>
+
+</nav>
+
+<div class="container">
+
+<h3>Empleados</h3>
+
+<input id="empleado1" placeholder="Empleado 1">
+<input id="empleado2" placeholder="Empleado 2">
+<input id="empleado3" placeholder="Empleado 3">
+<input id="empleado4" placeholder="Empleado 4">
+<input id="empleado5" placeholder="Empleado 5">
+
+<br>
+
+<button onclick="generarCronograma()">Generar cronograma</button>
+
+<button onclick="descargarPDF()">Descargar PDF</button>
+
+<div id="cronograma">
+
+<table id="tablaTurnos">
+
+<thead>
+<tr>
+<th>Día</th>
+<th>Mañana</th>
+<th>Tarde</th>
+<th>Noche</th>
+</tr>
+</thead>
+
+<tbody id="tablaBody"></tbody>
+
+</table>
+
+</div>
+
+</div>
+
+<footer>
+
+<p style="font-size:14px;"><a href="sobre-nosotros.html">Sobre nosotros</a> | <a href="contacto.html">Contacto</a> | <a href="terminos.html">Términos</a></p>
+
+</footer>
+
+<script>
+
+const dias = [
+"Lunes",
+"Martes",
+"Miércoles",
+"Jueves",
+"Viernes",
+"Sábado",
+"Domingo"
+];
+
+const colores = [
+"#e3f2fd",
+"#e8f5e9",
+"#fff3e0",
+"#fce4ec",
+"#ede7f6"
+];
+
+function obtenerEmpleados(){
+
+let empleados = [];
+
+for(let i=1;i<=5;i++){
+
+let nombre = document.getElementById("empleado"+i).value;
+
+if(nombre.trim()!="") empleados.push(nombre);
+
+}
+
+return empleados;
+
+}
+
+function generarCronograma(){
+
+let empleados = obtenerEmpleados();
+
+let body = document.getElementById("tablaBody");
+
+body.innerHTML="";
+
+dias.forEach(dia=>{
+
+let fila = "<tr>";
+
+fila += "<td>"+dia+"</td>";
+
+for(let i=0;i<3;i++){
+
+let select = "<select onchange='colorear(this)'>";
+
+select += "<option value=''>-</option>";
+
+empleados.forEach((emp,index)=>{
+
+select += "<option data-color='"+colores[index%colores.length]+"'>"+emp+"</option>";
+
+});
+
+select += "</select>";
+
+fila += "<td>"+select+"</td>";
+
+}
+
+fila += "</tr>";
+
+body.innerHTML += fila;
+
+});
+
+}
+
+function colorear(select){
+
+let color = select.options[select.selectedIndex].dataset.color;
+
+select.style.backgroundColor = color || "white";
+
+}
+
+function descargarPDF(){
+
+let element = document.getElementById("cronograma");
+
+html2pdf()
+.set({
+margin:1,
+filename:'cronograma_turnos.pdf',
+html2canvas:{scale:2},
+jsPDF:{unit:'in',format:'letter',orientation:'landscape'}
+})
+.from(element)
+.save();
+
+}
+
+</script>
+
+</body>
+</html>
