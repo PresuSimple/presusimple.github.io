@@ -3,16 +3,17 @@
 
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Herramientas Gratis para Freelancers y Negocios | PresuSimple</title>
+<title>Herramientas Simples | Apps gratis para freelancers y negocios</title>
 
-<meta name="description" content="Herramientas gratis para crear presupuestos, recibos y documentos profesionales online.">
+<meta name="description" content="Herramientas simples para crear presupuestos, recibos, calcular IVA y precios. Gratis y sin registro.">
 
 <link rel="icon" type="image/png" href="favicon2.png">
 
 <!-- Google AdSense -->
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9755097339586015"
-crossorigin="anonymous"></script>  
+crossorigin="anonymous"></script>
 
 <!-- Google Analytics -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-8EQCFJJ250"></script>
@@ -21,75 +22,145 @@ window.dataLayer = window.dataLayer || [];
 function gtag(){dataLayer.push(arguments);}
 gtag('js', new Date());
 gtag('config', 'G-8EQCFJJ250');
-</script>  
+</script>
 
 <style>
 
 body{
 font-family:Arial, Helvetica, sans-serif;
-background:#f4f6f8;
+background:#f5f7fa;
 margin:0;
 }
 
+/* HEADER */
+
 header{
-background:#2c3e50;
-color:white;
-padding:25px;
 text-align:center;
+padding:40px 20px;
+background:white;
+border-bottom:1px solid #e6e6e6;
 }
 
-.container{
-max-width:900px;
+.logo{
+max-width:420px;
+width:90%;
+display:block;
 margin:auto;
-background:white;
-padding:40px;
-margin-top:30px;
-border-radius:10px;
-box-shadow:0 4px 12px rgba(0,0,0,0.08);
 }
+
+header p{
+margin-top:10px;
+font-size:18px;
+color:#555;
+}
+
+/* CONTENIDO */
+
+.container{
+max-width:1100px;
+margin:auto;
+padding:40px 20px;
+}
+
+.intro{
+text-align:center;
+font-size:18px;
+color:#444;
+max-width:750px;
+margin:auto;
+}
+
+/* GRID HERRAMIENTAS */
 
 .tools{
 display:grid;
 grid-template-columns:1fr 1fr;
-gap:25px;
-margin-top:30px;
+gap:30px;
+margin-top:40px;
 }
 
 .tool{
-border:1px solid #e2e6ea;
-padding:25px;
-border-radius:10px;
+background:white;
+padding:30px;
+border-radius:12px;
 text-align:center;
+box-shadow:0 6px 14px rgba(0,0,0,0.06);
 transition:0.2s;
 }
 
 .tool:hover{
-box-shadow:0 4px 10px rgba(0,0,0,0.1);
+transform:translateY(-5px);
+box-shadow:0 10px 20px rgba(0,0,0,0.12);
 }
 
-.tool h3{
-margin-top:0;
+.tool img{
+height:65px;
+margin-bottom:10px;
+}
+
+.tool p{
+color:#555;
+font-size:15px;
 }
 
 .tool a{
 display:inline-block;
-margin-top:10px;
+margin-top:12px;
 padding:12px 20px;
-background:#2e7d32;
-color:white;
-text-decoration:none;
 border-radius:8px;
+text-decoration:none;
 font-weight:bold;
+color:white;
 }
 
-.tool a:hover{
-background:#256628;
+/* COLORES DE CADA HERRAMIENTA */
+
+.presu{background:#2d7be5;}
+.recibo{background:#2e7d32;}
+.iva{background:#e53935;}
+.cobro{background:#f4b400;color:#222;}
+
+/* SECCION VALORES */
+
+.valores{
+margin-top:60px;
+background:white;
+padding:35px;
+border-radius:12px;
+box-shadow:0 4px 12px rgba(0,0,0,0.06);
 }
+
+.valores h2{
+text-align:center;
+margin-top:0;
+}
+
+.valores ul{
+font-size:17px;
+line-height:1.8;
+}
+
+/* FOOTER */
 
 footer{
 text-align:center;
-padding:30px;
+padding:40px;
 color:#666;
+font-size:14px;
+}
+
+/* MOBILE */
+
+@media (max-width:700px){
+
+.tools{
+grid-template-columns:1fr;
+}
+
+.logo{
+max-width:280px;
+}
+
 }
 
 </style>
@@ -100,73 +171,108 @@ color:#666;
 
 <header>
 
-<h2>Herramientas Gratis</h2>
-<p>Para freelancers, técnicos y pequeños negocios</p>
+<img src="logo-herramientas.png" alt="Herramientas Simples" class="logo">
+
+<p>Herramientas simples para freelancers, técnicos y pequeños negocios</p>
 
 </header>
 
-
 <div class="container">
 
-<h1>Herramientas online gratuitas</h1>
+<p class="intro">
 
-<p>
-Aquí encontrarás herramientas gratuitas para crear documentos profesionales de forma rápida y sencilla.
-Están pensadas para freelancers, técnicos, profesionales independientes y pequeños negocios.
+Creamos herramientas simples para resolver problemas reales de trabajo.  
+Sin registros, sin configuraciones complicadas y sin perder tiempo.
+
+Muchas veces es más rápido usar una herramienta simple que pedirle algo a una IA.
+
 </p>
-
 
 <div class="tools">
 
 <div class="tool">
 
+<img src="logo.png">
+
 <h3>PresuSimple</h3>
 
-<p>
-Crea presupuestos profesionales en segundos y descárgalos en PDF para enviarlos a tus clientes.
-</p>
+<p>Crea presupuestos profesionales en segundos y descárgalos en PDF.</p>
 
-<a href="https://presusimple.github.io/">
-Crear presupuesto
-</a>
+<a class="presu" href="https://presusimple.github.io/">Crear presupuesto</a>
 
 </div>
-
 
 <div class="tool">
 
+<img src="logo2.png">
+
 <h3>ReciboSimple</h3>
 
-<p>
-Genera recibos de pago fácilmente y descárgalos en PDF para confirmar pagos de tus clientes.
-</p>
+<p>Genera recibos de pago claros y rápidos para tus clientes.</p>
 
-<a href="recibosimple.html">
-Crear recibo
-</a>
+<a class="recibo" href="https://presusimple.github.io/recibosimple">Crear recibo</a>
+
+</div>
+
+<div class="tool">
+
+<img src="logo3.png">
+
+<h3>IVA Simple</h3>
+
+<p>Calcula el IVA fácilmente para precios, presupuestos o facturas.</p>
+
+<a class="iva" href="https://presusimple.github.io/ivasimple">Calcular IVA</a>
+
+</div>
+
+<div class="tool">
+
+<img src="Logo4.png">
+
+<h3>CobroSimple</h3>
+
+<p>Calcula cuánto deberías cobrar por tu trabajo o producto.</p>
+
+<a class="cobro" href="https://presusimple.github.io/cobrosimple">Calcular precio</a>
 
 </div>
 
 </div>
 
+<div class="valores">
 
-<h2 style="margin-top:40px;">Próximas herramientas</h2>
+<h2>Nuestra filosofía</h2>
 
 <ul>
-<li>FacturaSimple</li>
-<li>RemitoSimple</li>
-<li>Calculadora de IVA</li>
+
+<li>Herramientas rápidas y fáciles de usar</li>
+
+<li>Soluciones simples para problemas cotidianos</li>
+
+<li>Sin registros ni configuraciones complicadas</li>
+
+<li>Diseñadas para freelancers, técnicos y emprendedores</li>
+
+<li>Más rápido que pedirle algo a una IA</li>
+
 </ul>
 
 </div>
 
+</div>
 
 <footer>
 
-<p>© PresuSimple</p>
+<p>© Herramientas Simples</p>
+
+<p>
+<a href="sobre-nosotros.html">Sobre nosotros</a> |
+<a href="contacto.html">Contacto</a> |
+<a href="terminos.html">Términos</a>
+</p>
 
 </footer>
 
 </body>
-
 </html>
